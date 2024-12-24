@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "{{ url_for('static', filename = 'styles.css')}}">
+    <title>{% block title %}Immaculate Grid{% endblock %}</title>
+</head>
+<body>
+    <h1 align = "center" style = "font-family: Verdana, Geneva, Tahoma, sans-serif;">
+        IMMACULATE GRID
+    </h1>
+    <br />
+
+    <div class = "popuptext" id = "howtoplay" align = "center">
+        <div class = "header">
+            <h2>How To Play Immaculate Grid Baseball</h2>    
+        </div>
+
+        <div class = "info">
+            <p>Select a player for each cell that matches the criteria for that cell’s row and column.</p>
+            <p>You have nine guesses to fill out the grid.</p>
+            <p>Each guess, whether correct or incorrect, counts as a guess.</p>
+            <p>There is a new grid every day at 6:00am ET.</p>
+            <p>A player cannot be used twice.</p>
+            <p>Players may be active or inactive.</p>
+            <p>For team and team cell: player must have played at least one game (in the regular season or postseason) for both teams.</p>
+        </div>
+
+        <div class = "close">
+            <button onclick="togglePopup('howtoplay')">OK</button>
+        </div>
+        
+    </div>
+
+    <div class = "popuptext" id = "summary" align = "center">
+        <div class = "header">
+            <h2>Summary</h2>
+            <h4>Immaculate Grid</h4>
+        </div>
+
+        <div class = "info">
+            {% if correct == 9 %}
+            <h2>IMMACULATE!</h2>
+            {% endif %}
+            <h4>You got...</h4>
+            <h1>{{correct}}</h1>
+            <h4>correct!</h4>
+        </div>
+
+        <div class = "close">
+            <button onclick="togglePopup('summary')">OK</button>
+        </div>
+    </div>
+
+    <div class = "grid" align = "center">
+
+        <form class = "player_form" id = "form_one" method = "POST">
+            <input class = "teams" id = "formid_one" name = "form_id" type = "hidden">
+            <input class = "teams" id = "team_one_one" name = "team_one" type = "hidden">
+            <input class = "teams" id = "team_two_one" name = "team_two" type = "hidden">
+            <input class = "search_player" id = "search_player_one" name = "player" type = "text" list = "player_names">
+            <input class = "submit_player" id = "submit_player_one" type = "submit" value = "Select">
+        </form>
+        <form class = "player_form" id = "form_two" method = "POST">
+            <input class = "teams" id = "formid_two" name = "form_id" type = "hidden">
+            <input class = "teams" id = "team_one_two" name = "team_one" type = "hidden">
+            <input class = "teams" id = "team_two_two" name = "team_two" type = "hidden">
+            <input class = "search_player" id = "search_player_two" name = "player" type = "text" list = "player_names">
+            <input class = "submit_player" id = "submit_player_two" type = "submit" value = "Select">
+        </form>
+        <form class = "player_form" id = "form_three" method = "POST">
+            <input class = "teams" id = "formid_three" name = "form_id" type = "hidden">
+            <input class = "teams" id = "team_one_three" name = "team_one" type = "hidden">
+            <input class = "teams" id = "team_two_three" name = "team_two" type = "hidden">
+            <input class = "search_player" id = "search_player_three" name = "player" type = "text" list = "player_names">
+            <input class = "submit_player" id = "submit_player_three" type = "submit" value = "Select">
+        </form>
+        <form class = "player_form" id = "form_four" method = "POST">
+            <input class = "teams" id = "formid_four" name = "form_id" type = "hidden">
+            <input class = "teams" id = "team_one_four" name = "team_two" type = "hidden">
+            <input class = "teams" id = "team_two_four" name = "team_one" type = "hidden">
+            <input class = "search_player" id = "search_player_four" name = "player" type = "text" list = "player_names">
+            <input class = "submit_player" id = "submit_player_four" type = "submit" value = "Select">
+        </form>
+        <form class = "player_form" id = "form_five" method = "POST">
+            <input class = "teams" id = "formid_five" name = "form_id" type = "hidden">
+            <input class = "teams" id = "team_one_five" name = "team_one" type = "hidden">
+            <input class = "teams" id = "team_two_five" name = "team_two" type = "hidden">
+            <input class = "search_player" id = "search_player_five" name = "player" type = "text" list = "player_names">
+            <input class = "submit_player" id = "submit_player_five" type = "submit" value = "Select">
+        </form>
+        <form class = "player_form" id = "form_six" method = "POST">
+            <input class = "teams" id = "formid_six" name = "form_id" type = "hidden">
+            <input class = "teams" id = "team_one_six" name = "team_one" type = "hidden">
+            <input class = "teams" id = "team_two_six" name = "team_two" type = "hidden">
+            <input class = "search_player" id = "search_player_six" name = "player" type = "text" list = "player_names">
+            <input class = "submit_player" id = "submit_player_six" type = "submit" value = "Select">
+        </form>
+        <form class = "player_form" id = "form_seven" method = "POST">
+            <input class = "teams" id = "formid_seven" name = "form_id" type = "hidden">
+            <input class = "teams" id = "team_one_seven" name = "team_one" type = "hidden">
+            <input class = "teams" id = "team_two_seven" name = "team_two" type = "hidden">
+            <input class = "search_player" id = "search_player_seven" name = "player" type = "text" list = "player_names">
+            <input class = "submit_player" id = "submit_player_seven" type = "submit" value = "Select">
+        </form>
+        <form class = "player_form" id = "form_eight" method = "POST">
+            <input class = "teams" id = "formid_eight" name = "form_id" type = "hidden">
+            <input class = "teams" id = "team_one_eight" name = "team_one" type = "hidden">
+            <input class = "teams" id = "team_two_eight" name = "team_two" type = "hidden">
+            <input class = "search_player" id = "search_player_eight" name = "player" type = "text" list = "player_names">
+            <input class = "submit_player" id = "submit_player_eight" type = "submit" value = "Select">
+        </form>
+        <form class = "player_form" id = "form_nine" method = "POST">
+            <input class = "teams" id = "formid_nine" name = "form_id" type = "hidden">
+            <input class = "teams" id = "team_one_nine" name = "team_one" type = "hidden">
+            <input class = "teams" id = "team_two_nine" name = "team_two" type = "hidden">
+            <input class = "search_player" id = "search_player_nine" name = "player" type = "text" list = "player_names">
+            <input class = "submit_player" id = "submit_player_nine" type = "submit" value = "Select">
+        </form>
+        <br />
+
+        <datalist id = "player_names">
+            {% for name in player_names %}
+            <option value = "{{ name }}"></option>
+            {% endfor %}
+        </datalist>
+
+        <div class = "game">
+
+            <div class="grid-container">
+                <div class="item1" onclick="togglePopup('howtoplay')">
+                    How To Play
+                </div>
+                <div class="item2">
+                    <img src = "{{ url_for('static', filename = sources[0])}}" alt = "Not Loading" width = "150px" height = "150px" class = "logo">
+                </div>
+                <div class="item3">
+                    <img src = "{{ url_for('static', filename = sources[1])}}" alt = "Not Loading" width = "150px" height = "150px" class = "logo">
+                </div>  
+                <div class="item4">
+                    <img src = "{{ url_for('static', filename = sources[2])}}" alt = "Not Loading" width = "150px" height = "150px" class = "logo">
+                </div>
+                <div class="item5">
+                    <img src = "{{ url_for('static', filename = sources[3])}}" alt = "Not Loading" width = "150px" height = "150px" class = "logo">
+                </div>
+                <div class="item6">
+                    <img src = "{{ url_for('static', filename = sources[4])}}" alt = "Not Loading" width = "150px" height = "150px" class = "logo">
+                </div>
+                <div class="item7">
+                    <img src = "{{ url_for('static', filename = sources[5])}}" alt = "Not Loading" width = "150px" height = "150px" class = "logo">
+                </div>
+    
+                <div class = "answers">
+                    <button onclick="showBar('one', '{{franchises.iloc[0]['franch_id']}}', '{{franchises.iloc[3]['franch_id']}}')" class = "{{ btn_class.get('form_one') }}" id = "answer1" form = "form_one" type = "button"></button>
+                    <button onclick="showBar('two', '{{franchises.iloc[1]['franch_id']}}', '{{franchises.iloc[3]['franch_id']}}')" class = "{{ btn_class.get('form_two') }}" id = "answer2" form = "form_two" type = "button"></button>
+                    <button onclick="showBar('three', '{{franchises.iloc[2]['franch_id']}}', '{{franchises.iloc[3]['franch_id']}}')" class = "{{ btn_class.get('form_three') }}" id = "answer3" form = "form_three" type = "button"></button>
+                    <button onclick="showBar('four', '{{franchises.iloc[0]['franch_id']}}', '{{franchises.iloc[4]['franch_id']}}')" class = "{{ btn_class.get('form_four') }}" id = "answer4" form = "form_four" type = "button"></button>
+                    <button onclick="showBar('five', '{{franchises.iloc[1]['franch_id']}}', '{{franchises.iloc[4]['franch_id']}}')" class = "{{ btn_class.get('form_five') }}" id = "answer5" form = "form_five" type = "button"></button>
+                    <button onclick="showBar('six', '{{franchises.iloc[2]['franch_id']}}', '{{franchises.iloc[4]['franch_id']}}')" class = "{{ btn_class.get('form_six') }}" id = "answer6" form = "form_six" type = "button"></button>
+                    <button onclick="showBar('seven', '{{franchises.iloc[0]['franch_id']}}', '{{franchises.iloc[5]['franch_id']}}')" class = "{{ btn_class.get('form_seven') }}" id = "answer7" form = "form_seven" type = "button"></button>
+                    <button onclick="showBar('eight', '{{franchises.iloc[1]['franch_id']}}', '{{franchises.iloc[5]['franch_id']}}')" class = "{{ btn_class.get('form_eight') }}" id = "answer8" form = "form_eight" type = "button"></button>
+                    <button onclick="showBar('nine', '{{franchises.iloc[2]['franch_id']}}', '{{franchises.iloc[5]['franch_id']}}')" class = "{{ btn_class.get('form_nine') }}" id = "answer9" form = "form_nine" type = "button"></button>
+                </div>
+            </div>
+
+            <div class = "guesses">
+                <p>Guesses Left</p>
+                <div id = "guesses_left">{{guesses}}</div>
+                <button id = "giveup" onclick = "togglePopup('summary')" type = "submit">Give up</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function showBar(n, t1, t2) {
+            const elements = document.querySelectorAll('.player_form');
+            const elementId = "form_" + n;
+            const searchId = "search_player_" + n;
+            const teamOne = "team_one_" + n;
+            const teamTwo = "team_two_" + n;
+            const formId = "formid_" + n;
+
+            // Loop through the elements and set their display to none
+            elements.forEach(element => {
+            element.style.display = 'none'; 
+            });
+
+            // Replace placeholder to match grid's specific teams
+            document.getElementById(searchId).placeholder = "Player who played for " + t1 + " & " + t2;
+            document.getElementById(teamOne).value = t1;
+            document.getElementById(teamTwo).value = t2;
+            document.getElementById(formId).value = elementId;
+
+
+            // Display the search bar for the given grid
+            document.getElementById(elementId).style.display = "block";
+
+        }
+    </script>
+
+    <script>
+        function togglePopup(element_id) {
+            var popup = document.getElementById(element_id);
+            popup.classList.toggle("show");
+        }
+    </script>
+
+    {% if guesses == 0 %}
+    <script>
+        document.getElementById("summary").classList.toggle("show");
+        document.getElementById("giveup").innerHTML = "Summary";
+    </script>
+    {% endif %}
+
+</body>
+</html>

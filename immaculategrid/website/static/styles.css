@@ -1,0 +1,238 @@
+body {
+  background-color: rgb(248, 244, 244);
+}
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game .guesses {
+  margin: 100px;
+}
+
+.game .guesses * {
+  margin: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.game .guesses div {
+  font-size: 80px;
+}
+
+.game .guesses button {
+  color: white;
+  background-color: rgb(0, 123, 255);
+  border: black;
+  border-radius: 5px;
+  width: 70px;
+  padding: 7px;
+}
+
+.game .guesses button:hover {
+  cursor: pointer;
+  background-color: lightblue;
+}
+
+.header { grid-area: toprow; }
+.info { grid-area: middlerows; }
+.close { grid-area: bottomrow; }
+
+.popuptext {
+  display: grid;
+  visibility: hidden;
+  position: absolute;
+  justify-content: center;
+  text-align: center;
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 90%;
+  width: 40%;
+  margin-left: 440px;
+  bottom: 50px;
+  box-shadow: 5px 5px 5px 5px #888888;
+  grid-template-areas: 
+    'toprow'
+    'middlerows'
+    'middlerows'
+    'middlerows'
+    'bottomrow';
+}
+
+.popuptext h1 {
+  font-size: 72px;
+}
+
+.show {
+  visibility: visible;
+  -webkit-animation: fadeIn 0.5s;
+  animation: fadeIn 0.5s;
+}
+
+.popuptext div {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+}
+
+.popuptext .btn {
+  margin-bottom: 0px;
+}
+
+.popuptext div * {
+  margin: 5px;
+}
+
+.popuptext * {
+  position: relative;
+  margin-top: 50px;
+}
+
+.popuptext button {
+  background-color: #2196F3;
+  color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 100px;
+}
+
+.popuptext button:hover {
+  cursor: pointer;
+  background-color: lightblue;
+}
+
+.item1 { grid-area: topleft; }
+.item2 { grid-area: team_one; }
+.item3 { grid-area: team_two; }
+.item4 { grid-area: team_three; }
+.item5 { grid-area: team_four; }
+.item6 { grid-area: team_five; }
+.item7 { grid-area: team_six; }
+.answer1 {grid-area: answer_one; }
+.answer2 {grid-area: answer_two; }
+.answer3 {grid-area: answer_three; }
+.answer4 {grid-area: answer_four; }
+.answer5 {grid-area: answer_five; }
+.answer6 {grid-area: answer_six; }
+.answer7 {grid-area: answer_seven; }
+.answer8 {grid-area: answer_eight; }
+.answer9 {grid-area: answer_nine; }
+
+.grid form .submit_player {
+  background-color: rgb(54, 178, 54);
+  color: white;
+  border: black;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.grid-container {
+  display: inline-grid;
+  grid-template-areas:
+    'topleft team_one team_two team_three'
+    'team_four answers answers answers'
+    'team_five answers answers answers'
+    'team_six answers answers answers';
+  gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  font-size: 30px;
+  aspect-ratio: 1;
+}
+
+.answers {
+    display: grid;
+    grid-template-areas: 
+    'answer_one answer_two answer_three'
+    'answer_four answer_five answer_six'
+    'answer_seven answer_eight answer_nine';
+    gap: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    font-size: 30px;
+    text-align: center;
+    grid-row: span 3;
+    grid-column: span 3;
+}
+
+.grid-container .item1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.grid-container .item1:hover {
+  cursor: pointer;
+}
+
+.answers .btn.default {
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  border: black;
+}
+
+.answers .btn.correct {
+  background-color: lightgreen;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  border: black;
+  pointer-events: none;
+}
+
+.answers .gameover {
+  background-color: rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+  border: black;
+}
+
+.answers .btn.default:hover {
+  background-color: lightgray;
+}
+
+.search_player {
+  width: 520px;
+  border-radius: 7px;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 5px;
+}
+
+.submit_player {
+  width: 100px;
+  padding: 3px;
+}
+
+.player_form {
+  display: none;
+}
+
+/* Adding Animations for Popups */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
